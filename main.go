@@ -7,5 +7,5 @@ func main() {
 }
 
 func hello() string {
-	return "Hello go" // эту строку исправили Go теперь не go
+	return "Hello Go" // эту строку исправили Go теперь не go
 }
