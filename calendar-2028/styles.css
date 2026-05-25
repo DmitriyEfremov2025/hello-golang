@@ -85,6 +85,62 @@ h1 {
 	color: #65738b;
 }
 
+.holiday-panel {
+	display: grid;
+	grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.6fr);
+	gap: 18px;
+	align-items: start;
+	margin: 0 0 24px;
+	padding: 24px;
+	border: 1px solid rgba(202, 67, 47, 0.22);
+	border-radius: 28px;
+	background:
+		linear-gradient(135deg, rgba(255, 246, 230, 0.96), rgba(255, 255, 255, 0.9)),
+		#fff;
+	box-shadow: 0 18px 54px rgba(124, 61, 38, 0.1);
+}
+
+.holiday-panel h2 {
+	margin: 0;
+	color: #822f25;
+	font-size: clamp(1.45rem, 3vw, 2.15rem);
+}
+
+.holiday-panel p:not(.eyebrow) {
+	margin: 10px 0 0;
+	color: #745c51;
+	line-height: 1.55;
+}
+
+.holiday-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.holiday-list li {
+	display: grid;
+	gap: 4px;
+	padding: 12px 14px;
+	border: 1px solid rgba(219, 92, 56, 0.22);
+	border-radius: 18px;
+	background: #fffaf4;
+}
+
+.holiday-list time {
+	color: #b14130;
+	font-size: 0.86rem;
+	font-weight: 800;
+}
+
+.holiday-list span {
+	color: #42312c;
+	font-weight: 700;
+}
+
 .calendar-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -137,6 +193,26 @@ h1 {
 	background: #fff2f1;
 }
 
+.month-table .holiday-day,
+.month-table .holiday-day:nth-child(6),
+.month-table .holiday-day:nth-child(7) {
+	position: relative;
+	color: #fff;
+	background: linear-gradient(135deg, #d94b36, #f09a34);
+	box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.month-table .holiday-day::after {
+	position: absolute;
+	right: 5px;
+	top: 4px;
+	width: 5px;
+	height: 5px;
+	border-radius: 999px;
+	background: #fff8d7;
+	content: "";
+}
+
 .month-table .empty-day,
 .month-table .empty-day:nth-child(6),
 .month-table .empty-day:nth-child(7) {
@@ -146,6 +222,10 @@ h1 {
 
 @media (max-width: 680px) {
 	.facts {
+		grid-template-columns: 1fr;
+	}
+
+	.holiday-panel {
 		grid-template-columns: 1fr;
 	}
 }
@@ -161,6 +241,10 @@ h1 {
 
 	.facts {
 		display: none;
+	}
+
+	.holiday-panel {
+		box-shadow: none;
 	}
 
 	.calendar-grid {
