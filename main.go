@@ -1,11 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"sort"
+)
 
 func main() {
-	fmt.Println(hello())
+	var a, b, c int
+	if _, err := fmt.Fscan(os.Stdin, &a, &b, &c); err != nil {
+		return
+	}
+
+	fmt.Println(middle(a, b, c))
 }
 
-func hello() string {
-	return "Hello Go" // эту строку исправили Go теперь не go
+func middle(a, b, c int) int {
+	numbers := []int{a, b, c}
+	sort.Ints(numbers)
+	return numbers[1]
 }
