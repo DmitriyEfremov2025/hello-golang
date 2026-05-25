@@ -428,6 +428,40 @@ body.modal-open {
 	line-height: 1.6;
 }
 
+.sound-bars {
+	display: flex;
+	justify-content: center;
+	gap: 6px;
+	height: 34px;
+	margin: 14px 0 0;
+}
+
+.sound-bars span {
+	align-self: end;
+	width: 7px;
+	height: 10px;
+	border-radius: 999px;
+	background: linear-gradient(180deg, #f09a34, #d94b36);
+	opacity: 0.38;
+}
+
+.sound-bars.is-playing span {
+	animation: sound-wave 360ms ease-in-out infinite alternate;
+	opacity: 1;
+}
+
+.sound-bars.is-playing span:nth-child(2) {
+	animation-delay: 80ms;
+}
+
+.sound-bars.is-playing span:nth-child(3) {
+	animation-delay: 160ms;
+}
+
+.sound-bars.is-playing span:nth-child(4) {
+	animation-delay: 240ms;
+}
+
 .movie-sound-note {
 	color: #8a6b5a;
 	font-size: 0.92rem;
@@ -482,6 +516,16 @@ body.modal-open {
 
 	100% {
 		transform: scale(1) rotate(0);
+	}
+}
+
+@keyframes sound-wave {
+	from {
+		height: 9px;
+	}
+
+	to {
+		height: 30px;
 	}
 }
 

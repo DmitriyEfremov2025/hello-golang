@@ -229,6 +229,7 @@ function renderMovieScene(root, story) {
 
 let audioContext;
 let activeAudioNodes = [];
+let soundBarsTimeout;
 let previouslyFocusedElement;
 
 function stopHolidayMusic() {
@@ -241,9 +242,17 @@ function stopHolidayMusic() {
 		node.disconnect();
 	}
 	activeAudioNodes = [];
+	window.clearTimeout(soundBarsTimeout);
+	document.querySelector(".sound-bars")?.classList.remove("is-playing");
 }
 
 function playHolidayMusic(notes) {
+	document.querySelector(".sound-bars")?.classList.add("is-playing");
+	soundBarsTimeout = window.setTimeout(
+		() => document.querySelector(".sound-bars")?.classList.remove("is-playing"),
+		notes.length * 180,
+	);
+
 	const AudioContextClass = window.AudioContext ?? window.webkitAudioContext;
 	if (!AudioContextClass) {
 		return;
