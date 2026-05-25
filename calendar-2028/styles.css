@@ -53,6 +53,42 @@ h1 {
 	line-height: 1.6;
 }
 
+.year-controls {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 24px;
+}
+
+.year-button {
+	min-width: 94px;
+	padding: 12px 18px;
+	border: 1px solid rgba(73, 105, 216, 0.26);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.82);
+	box-shadow: 0 12px 32px rgba(34, 50, 84, 0.08);
+	color: #314fcb;
+	font: inherit;
+	font-weight: 800;
+	cursor: pointer;
+	transition:
+		background 160ms ease,
+		color 160ms ease,
+		transform 160ms ease;
+}
+
+.year-button:hover,
+.year-button:focus-visible {
+	transform: translateY(-1px);
+	outline: none;
+}
+
+.year-button.is-active {
+	background: linear-gradient(135deg, #314fcb, #5577ff);
+	color: #fff;
+}
+
 .facts {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));

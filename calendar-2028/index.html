@@ -9,24 +9,25 @@
 	</head>
 	<body>
 		<header class="hero">
-			<p class="eyebrow">2028</p>
-			<h1>Календарь на 2028 год</h1>
-			<p class="lead">Все месяцы високосного года на одной адаптивной странице с выделенными праздниками России.</p>
+			<p id="selected-year" class="eyebrow">2028</p>
+			<h1 id="page-title">Календарь на 2028 год</h1>
+			<p id="page-lead" class="lead">Все месяцы 2028 года на одной адаптивной странице с выделенными праздниками России.</p>
+			<nav id="year-controls" class="year-controls" aria-label="Выбор года"></nav>
 		</header>
 
 		<main>
 			<section class="facts" aria-label="Краткая информация">
 				<div>
-					<span class="fact-number">366</span>
+					<span id="total-days" class="fact-number">366</span>
 					<span class="fact-label">дней</span>
 				</div>
 				<div>
-					<span class="fact-number">29</span>
+					<span id="february-days" class="fact-number">29</span>
 					<span class="fact-label">дней в феврале</span>
 				</div>
 				<div>
-					<span class="fact-number">Пн</span>
-					<span class="fact-label">первый день недели</span>
+					<span id="first-day" class="fact-number">Сб</span>
+					<span class="fact-label">1 января</span>
 				</div>
 			</section>
 

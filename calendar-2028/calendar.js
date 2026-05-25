@@ -1,4 +1,6 @@
-export const YEAR = 2028;
+export const YEARS = [2026, 2027, 2028];
+export const DEFAULT_YEAR = 2028;
+export const YEAR = DEFAULT_YEAR;
 
 export const MONTHS = [
 	"Январь",
@@ -17,22 +19,28 @@ export const MONTHS = [
 
 export const WEEKDAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
-export const RUSSIAN_HOLIDAYS = new Map([
-	["2028-01-01", "Новогодние каникулы"],
-	["2028-01-02", "Новогодние каникулы"],
-	["2028-01-03", "Новогодние каникулы"],
-	["2028-01-04", "Новогодние каникулы"],
-	["2028-01-05", "Новогодние каникулы"],
-	["2028-01-06", "Новогодние каникулы"],
-	["2028-01-07", "Рождество Христово"],
-	["2028-01-08", "Новогодние каникулы"],
-	["2028-02-23", "День защитника Отечества"],
-	["2028-03-08", "Международный женский день"],
-	["2028-05-01", "Праздник Весны и Труда"],
-	["2028-05-09", "День Победы"],
-	["2028-06-12", "День России"],
-	["2028-11-04", "День народного единства"],
-]);
+export const RUSSIAN_HOLIDAY_DEFINITIONS = [
+	["01-01", "Новогодние каникулы"],
+	["01-02", "Новогодние каникулы"],
+	["01-03", "Новогодние каникулы"],
+	["01-04", "Новогодние каникулы"],
+	["01-05", "Новогодние каникулы"],
+	["01-06", "Новогодние каникулы"],
+	["01-07", "Рождество Христово"],
+	["01-08", "Новогодние каникулы"],
+	["02-23", "День защитника Отечества"],
+	["03-08", "Международный женский день"],
+	["05-01", "Праздник Весны и Труда"],
+	["05-09", "День Победы"],
+	["06-12", "День России"],
+	["11-04", "День народного единства"],
+];
+
+export const RUSSIAN_HOLIDAYS = new Map(
+	YEARS.flatMap((year) =>
+		RUSSIAN_HOLIDAY_DEFINITIONS.map(([monthDay, holidayName]) => [`${year}-${monthDay}`, holidayName]),
+	),
+);
 
 export const RUSSIAN_HOLIDAY_STORIES = {
 	"Новогодние каникулы": {
@@ -114,8 +122,16 @@ export function getRussianHoliday(date) {
 	return RUSSIAN_HOLIDAYS.get(date) ?? null;
 }
 
+export function getRussianHolidaysForYear(year) {
+	return RUSSIAN_HOLIDAY_DEFINITIONS.map(([monthDay, holidayName]) => [`${year}-${monthDay}`, holidayName]);
+}
+
 export function getRussianHolidayStory(holidayName) {
 	return RUSSIAN_HOLIDAY_STORIES[holidayName] ?? null;
+}
+
+export function totalDaysInYear(year) {
+	return isLeapYear(year) ? 366 : 365;
 }
 
 export function buildMonthWeeks(year, monthIndex) {
@@ -135,19 +151,19 @@ export function buildMonthWeeks(year, monthIndex) {
 	);
 }
 
-function renderMonth(monthIndex) {
+function renderMonth(year, monthIndex) {
 	const section = document.createElement("section");
 	section.className = "month-card";
-	section.setAttribute("aria-labelledby", `month-${monthIndex}`);
+	section.setAttribute("aria-labelledby", `month-${year}-${monthIndex}`);
 
 	const title = document.createElement("h2");
-	title.id = `month-${monthIndex}`;
+	title.id = `month-${year}-${monthIndex}`;
 	title.textContent = MONTHS[monthIndex];
 	section.append(title);
 
 	const table = document.createElement("table");
 	table.className = "month-table";
-	table.setAttribute("aria-label", `${MONTHS[monthIndex]} ${YEAR}`);
+	table.setAttribute("aria-label", `${MONTHS[monthIndex]} ${year}`);
 
 	const thead = document.createElement("thead");
 	const headerRow = document.createElement("tr");
@@ -161,7 +177,7 @@ function renderMonth(monthIndex) {
 	table.append(thead);
 
 	const tbody = document.createElement("tbody");
-	for (const week of buildMonthWeeks(YEAR, monthIndex)) {
+	for (const week of buildMonthWeeks(year, monthIndex)) {
 		const row = document.createElement("tr");
 		for (const day of week) {
 			const cell = document.createElement("td");
@@ -169,7 +185,7 @@ function renderMonth(monthIndex) {
 				cell.className = "empty-day";
 				cell.setAttribute("aria-hidden", "true");
 			} else {
-				const date = formatDate(YEAR, monthIndex, day);
+				const date = formatDate(year, monthIndex, day);
 				const holidayName = getRussianHoliday(date);
 				cell.setAttribute("data-date", date);
 
@@ -203,13 +219,27 @@ function createHolidayButton(day, date, holidayName, monthIndex) {
 	return button;
 }
 
-function renderHolidayList(root) {
+function renderHolidayList(root, year) {
 	root.replaceChildren(
-		...Array.from(RUSSIAN_HOLIDAYS, ([date, name]) => {
+		...getRussianHolidaysForYear(year).map(([date, name]) => {
 			const item = document.createElement("li");
 			const [year, month, day] = date.split("-");
 			item.innerHTML = `<time datetime="${date}">${day}.${month}.${year}</time><span>${name}</span>`;
 			return item;
+		}),
+	);
+}
+
+function renderYearControls(root) {
+	root.replaceChildren(
+		...YEARS.map((year) => {
+			const button = document.createElement("button");
+			button.type = "button";
+			button.className = "year-button";
+			button.dataset.year = String(year);
+			button.textContent = String(year);
+			button.addEventListener("click", () => renderSelectedYear(year));
+			return button;
 		}),
 	);
 }
@@ -343,22 +373,81 @@ function setupHolidayMovieModal() {
 	});
 }
 
-export function renderCalendar(root) {
-	root.replaceChildren(...MONTHS.map((_, monthIndex) => renderMonth(monthIndex)));
+function renderYearFacts(year) {
+	const totalDaysElement = document.querySelector("#total-days");
+	const februaryDaysElement = document.querySelector("#february-days");
+	const firstDayElement = document.querySelector("#first-day");
+
+	if (totalDaysElement) {
+		totalDaysElement.textContent = String(totalDaysInYear(year));
+	}
+	if (februaryDaysElement) {
+		februaryDaysElement.textContent = String(daysInMonth(year, 1));
+	}
+	if (firstDayElement) {
+		firstDayElement.textContent = WEEKDAYS[mondayFirstWeekday(year, 0)];
+	}
+}
+
+function updateYearCopy(year) {
+	const selectedYear = document.querySelector("#selected-year");
+	const pageTitle = document.querySelector("#page-title");
+	const lead = document.querySelector("#page-lead");
+	const calendarGrid = document.querySelector("#calendar-grid");
+	const holidayTitle = document.querySelector("#holiday-title");
+
+	if (selectedYear) {
+		selectedYear.textContent = String(year);
+	}
+	if (pageTitle) {
+		pageTitle.textContent = `Календарь на ${year} год`;
+	}
+	if (lead) {
+		lead.textContent = `Все месяцы ${year} года на одной адаптивной странице с выделенными праздниками России.`;
+	}
+	if (calendarGrid) {
+		calendarGrid.setAttribute("aria-label", `Месяцы ${year} года`);
+	}
+	if (holidayTitle) {
+		holidayTitle.textContent = `Официальные праздничные даты ${year}`;
+	}
+	document.title = `Календарь на ${year} год`;
+}
+
+function updateYearControls(year) {
+	for (const button of document.querySelectorAll(".year-button")) {
+		const isActive = button.dataset.year === String(year);
+		button.classList.toggle("is-active", isActive);
+		button.setAttribute("aria-pressed", String(isActive));
+	}
+}
+
+function renderSelectedYear(year) {
+	const calendarRoot = document.querySelector("#calendar-grid");
+	const holidayList = document.querySelector("#holiday-list");
+	if (!calendarRoot || !holidayList) {
+		return;
+	}
+
+	updateYearCopy(year);
+	renderYearFacts(year);
+	updateYearControls(year);
+	renderHolidayList(holidayList, year);
+	renderCalendar(calendarRoot, year);
+}
+
+export function renderCalendar(root, year = DEFAULT_YEAR) {
+	root.replaceChildren(...MONTHS.map((_, monthIndex) => renderMonth(year, monthIndex)));
 }
 
 if (typeof document !== "undefined") {
 	document.addEventListener("DOMContentLoaded", () => {
-		const root = document.querySelector("#calendar-grid");
-		if (root) {
-			renderCalendar(root);
+		const yearControls = document.querySelector("#year-controls");
+		if (yearControls) {
+			renderYearControls(yearControls);
 		}
 
-		const holidayList = document.querySelector("#holiday-list");
-		if (holidayList) {
-			renderHolidayList(holidayList);
-		}
-
+		renderSelectedYear(DEFAULT_YEAR);
 		setupHolidayMovieModal();
 	});
 }

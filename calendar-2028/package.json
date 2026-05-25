@@ -1,7 +1,7 @@
 {
-	"name": "calendar-2028",
+	"name": "russian-holiday-calendars",
 	"version": "1.0.0",
-	"description": "Static calendar for 2028",
+	"description": "Static Russian holiday calendars for 2026, 2027, and 2028",
 	"type": "module",
 	"scripts": {
 		"test": "node calendar.test.mjs"
