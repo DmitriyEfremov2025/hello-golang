@@ -247,6 +247,7 @@ function stopHolidayMusic() {
 }
 
 function playHolidayMusic(notes) {
+	stopHolidayMusic();
 	document.querySelector(".sound-bars")?.classList.add("is-playing");
 	soundBarsTimeout = window.setTimeout(
 		() => document.querySelector(".sound-bars")?.classList.remove("is-playing"),
@@ -258,7 +259,6 @@ function playHolidayMusic(notes) {
 		return;
 	}
 
-	stopHolidayMusic();
 	audioContext ??= new AudioContextClass();
 	audioContext.resume();
 
