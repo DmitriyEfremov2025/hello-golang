@@ -34,12 +34,23 @@
 				<div>
 					<p class="eyebrow">Праздники РФ</p>
 					<h2 id="holiday-title">Официальные праздничные даты</h2>
-					<p>Выделены фиксированные праздничные дни России без учета переносов выходных.</p>
+					<p>Выделены фиксированные праздничные дни России без учета переносов выходных. Нажмите на выделенную дату, чтобы открыть короткий мультфильм с музыкой.</p>
 				</div>
 				<ol id="holiday-list" class="holiday-list"></ol>
 			</section>
 
 			<section id="calendar-grid" class="calendar-grid" aria-label="Месяцы 2028 года"></section>
 		</main>
+
+		<div id="movie-modal" class="movie-modal" hidden>
+			<section class="movie-dialog" role="dialog" aria-modal="true" aria-labelledby="movie-title">
+				<button id="movie-close" class="movie-close" type="button" aria-label="Закрыть мультфильм">×</button>
+				<div id="movie-scene" class="movie-scene" aria-hidden="true"></div>
+				<p id="movie-date" class="movie-date"></p>
+				<h2 id="movie-title"></h2>
+				<p id="movie-story" class="movie-story"></p>
+				<p class="movie-sound-note">Музыка создается прямо в браузере и запускается по клику на праздник.</p>
+			</section>
+		</div>
 	</body>
 </html>
