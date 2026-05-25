@@ -1,0 +1,10 @@
+{
+	"name": "calendar-2028",
+	"version": "1.0.0",
+	"description": "Static calendar for 2028",
+	"type": "module",
+	"scripts": {
+		"test": "node calendar.test.mjs"
+	},
+	"private": true
+}

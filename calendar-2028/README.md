@@ -1,0 +1,68 @@
+# Календарь на 2028 год
+
+Статический календарь на 2028 год: одна HTML-страница, CSS-оформление и JavaScript, который строит все 12 месяцев.
+
+## Запуск локально
+
+Из корня текущего репозитория:
+
+```bash
+python3 -m http.server 8080 --directory calendar-2028
+```
+
+Из папки `calendar-2028`:
+
+```bash
+python3 -m http.server 8080
+```
+
+Откройте страницу:
+
+```text
+http://localhost:8080
+```
+
+## Проверка
+
+Из корня текущего репозитория:
+
+```bash
+node calendar-2028/calendar.test.mjs
+```
+
+Из папки `calendar-2028`:
+
+```bash
+npm test
+```
+
+Тест проверяет, что 2028 год високосный, февраль содержит 29 дней, год содержит 366 дней, а январь начинается с субботы при неделе с понедельника.
+
+## Создание нового репозитория на GitHub
+
+В этой среде GitHub CLI доступен только для чтения, поэтому создание репозитория нужно выполнить у себя локально или в веб-интерфейсе GitHub.
+
+Вариант через GitHub CLI:
+
+```bash
+cp -R calendar-2028 ~/calendar-2028
+cd ~/calendar-2028
+git init
+git add .
+git commit -m "Add 2028 calendar"
+gh repo create calendar-2028 --public --source=. --remote=origin --push
+```
+
+Вариант через сайт GitHub:
+
+1. Создайте новый репозиторий `calendar-2028`.
+2. Скопируйте файлы из папки `calendar-2028` в локальную папку нового репозитория.
+3. Выполните:
+
+```bash
+git add .
+git commit -m "Add 2028 calendar"
+git branch -M main
+git remote add origin git@github.com:<ваш-логин>/calendar-2028.git
+git push -u origin main
+```
