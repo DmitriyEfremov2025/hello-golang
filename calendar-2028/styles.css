@@ -1,0 +1,608 @@
+:root {
+	color-scheme: light;
+	font-family:
+		Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		sans-serif;
+	background: #f4f7fb;
+	color: #162033;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background:
+		radial-gradient(circle at top left, rgba(75, 116, 255, 0.18), transparent 34rem),
+		linear-gradient(180deg, #f8fbff 0%, #eef3fb 100%);
+}
+
+.hero,
+main {
+	width: min(1180px, calc(100% - 32px));
+	margin: 0 auto;
+}
+
+.hero {
+	padding: 56px 0 28px;
+	text-align: center;
+}
+
+.eyebrow {
+	margin: 0 0 10px;
+	color: #4969d8;
+	font-size: 0.9rem;
+	font-weight: 800;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+}
+
+h1 {
+	margin: 0;
+	font-size: clamp(2.2rem, 7vw, 5rem);
+	line-height: 0.95;
+}
+
+.lead {
+	margin: 18px auto 0;
+	max-width: 640px;
+	color: #53627a;
+	font-size: 1.12rem;
+	line-height: 1.6;
+}
+
+.year-controls {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 24px;
+}
+
+.year-button {
+	min-width: 94px;
+	padding: 12px 18px;
+	border: 1px solid rgba(73, 105, 216, 0.26);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.82);
+	box-shadow: 0 12px 32px rgba(34, 50, 84, 0.08);
+	color: #314fcb;
+	font: inherit;
+	font-weight: 800;
+	cursor: pointer;
+	transition:
+		background 160ms ease,
+		color 160ms ease,
+		transform 160ms ease;
+}
+
+.year-button:hover,
+.year-button:focus-visible {
+	transform: translateY(-1px);
+	outline: none;
+}
+
+.year-button.is-active {
+	background: linear-gradient(135deg, #314fcb, #5577ff);
+	color: #fff;
+}
+
+.facts {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 14px;
+	margin: 0 0 24px;
+}
+
+.facts > div {
+	padding: 20px;
+	border: 1px solid rgba(94, 111, 145, 0.18);
+	border-radius: 24px;
+	background: rgba(255, 255, 255, 0.78);
+	box-shadow: 0 16px 48px rgba(34, 50, 84, 0.08);
+	text-align: center;
+}
+
+.fact-number,
+.fact-label {
+	display: block;
+}
+
+.fact-number {
+	color: #243b88;
+	font-size: 2rem;
+	font-weight: 800;
+}
+
+.fact-label {
+	margin-top: 4px;
+	color: #65738b;
+}
+
+.holiday-panel {
+	display: grid;
+	grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.6fr);
+	gap: 18px;
+	align-items: start;
+	margin: 0 0 24px;
+	padding: 24px;
+	border: 1px solid rgba(202, 67, 47, 0.22);
+	border-radius: 28px;
+	background:
+		linear-gradient(135deg, rgba(255, 246, 230, 0.96), rgba(255, 255, 255, 0.9)),
+		#fff;
+	box-shadow: 0 18px 54px rgba(124, 61, 38, 0.1);
+}
+
+.holiday-panel h2 {
+	margin: 0;
+	color: #822f25;
+	font-size: clamp(1.45rem, 3vw, 2.15rem);
+}
+
+.holiday-panel p:not(.eyebrow) {
+	margin: 10px 0 0;
+	color: #745c51;
+	line-height: 1.55;
+}
+
+.holiday-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.holiday-list li {
+	display: grid;
+	gap: 4px;
+	padding: 12px 14px;
+	border: 1px solid rgba(219, 92, 56, 0.22);
+	border-radius: 18px;
+	background: #fffaf4;
+}
+
+.holiday-list time {
+	color: #b14130;
+	font-size: 0.86rem;
+	font-weight: 800;
+}
+
+.holiday-list span {
+	color: #42312c;
+	font-weight: 700;
+}
+
+.calendar-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+	gap: 18px;
+	padding-bottom: 48px;
+}
+
+.month-card {
+	overflow: hidden;
+	border: 1px solid rgba(94, 111, 145, 0.2);
+	border-radius: 24px;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 18px 54px rgba(34, 50, 84, 0.1);
+}
+
+.month-card h2 {
+	margin: 0;
+	padding: 18px 20px;
+	background: linear-gradient(135deg, #314fcb, #5577ff);
+	color: #fff;
+	font-size: 1.2rem;
+}
+
+.month-table {
+	width: calc(100% - 28px);
+	margin: 12px 14px 18px;
+	border-collapse: separate;
+	border-spacing: 0;
+	table-layout: fixed;
+}
+
+.month-table th {
+	padding: 9px 0;
+	color: #7b879a;
+	font-size: 0.78rem;
+	font-weight: 800;
+}
+
+.month-table td {
+	height: 34px;
+	border-radius: 11px;
+	color: #22304a;
+	font-weight: 700;
+	text-align: center;
+}
+
+.month-table td:nth-child(6),
+.month-table td:nth-child(7) {
+	color: #e05a4f;
+	background: #fff2f1;
+}
+
+.month-table .holiday-day,
+.month-table .holiday-day:nth-child(6),
+.month-table .holiday-day:nth-child(7) {
+	color: #fff;
+	background: transparent;
+	padding: 0;
+}
+
+.holiday-button {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 34px;
+	border: 0;
+	border-radius: 11px;
+	background: linear-gradient(135deg, #d94b36, #f09a34);
+	box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+	color: #fff;
+	font: inherit;
+	font-weight: 800;
+	cursor: pointer;
+	transition:
+		transform 160ms ease,
+		box-shadow 160ms ease;
+}
+
+.holiday-button:hover,
+.holiday-button:focus-visible {
+	box-shadow:
+		inset 0 0 0 2px rgba(255, 255, 255, 0.72),
+		0 8px 18px rgba(211, 76, 46, 0.28);
+	transform: translateY(-1px) scale(1.04);
+	outline: none;
+}
+
+.holiday-button::after {
+	position: absolute;
+	right: 5px;
+	top: 4px;
+	width: 5px;
+	height: 5px;
+	border-radius: 999px;
+	background: #fff8d7;
+	content: "";
+}
+
+.month-table .empty-day,
+.month-table .empty-day:nth-child(6),
+.month-table .empty-day:nth-child(7) {
+	background: transparent;
+	color: transparent;
+}
+
+body.modal-open {
+	overflow: hidden;
+}
+
+.movie-modal {
+	position: fixed;
+	z-index: 20;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	padding: 20px;
+	background: rgba(20, 27, 45, 0.56);
+	backdrop-filter: blur(8px);
+}
+
+.movie-modal[hidden] {
+	display: none;
+}
+
+.movie-dialog {
+	position: relative;
+	width: min(680px, 100%);
+	padding: 22px;
+	border: 1px solid rgba(255, 255, 255, 0.48);
+	border-radius: 30px;
+	background: #fffdf9;
+	box-shadow: 0 32px 90px rgba(15, 23, 42, 0.34);
+	text-align: center;
+}
+
+.movie-close {
+	position: absolute;
+	right: 16px;
+	top: 14px;
+	z-index: 2;
+	display: grid;
+	place-items: center;
+	width: 38px;
+	height: 38px;
+	border: 0;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.88);
+	color: #7c2d22;
+	font-size: 1.6rem;
+	font-weight: 800;
+	cursor: pointer;
+}
+
+.movie-close:focus-visible {
+	outline: 3px solid #f09a34;
+	outline-offset: 2px;
+}
+
+.movie-scene {
+	position: relative;
+	overflow: hidden;
+	height: min(42vh, 260px);
+	min-height: 220px;
+	border-radius: 24px;
+	background:
+		radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.7), transparent 9rem),
+		linear-gradient(135deg, var(--scene-start, #eef5ff), var(--scene-end, #fff4df));
+}
+
+.movie-scene::before {
+	position: absolute;
+	right: -8%;
+	bottom: -18%;
+	left: -8%;
+	height: 38%;
+	border-radius: 50% 50% 0 0;
+	background: rgba(255, 255, 255, 0.52);
+	content: "";
+}
+
+.movie-shape {
+	position: absolute;
+	display: grid;
+	place-items: center;
+	filter: drop-shadow(0 12px 14px rgba(40, 31, 25, 0.2));
+	font-size: clamp(2rem, 7vw, 4.6rem);
+	line-height: 1;
+	animation: float 2.5s ease-in-out infinite;
+}
+
+.movie-shape-1 {
+	left: 10%;
+	top: 18%;
+	animation-name: drift-left;
+}
+
+.movie-shape-2 {
+	left: 34%;
+	bottom: 16%;
+	font-size: clamp(3.5rem, 11vw, 6.6rem);
+	animation-name: bounce-in;
+}
+
+.movie-shape-3 {
+	right: 31%;
+	bottom: 18%;
+	animation-delay: 120ms;
+}
+
+.movie-shape-4 {
+	right: 12%;
+	top: 18%;
+	animation-name: spin-pop;
+	animation-delay: 180ms;
+}
+
+.movie-shape-5 {
+	right: 16%;
+	bottom: 14%;
+	font-size: clamp(1.8rem, 5vw, 3.2rem);
+	animation-delay: 300ms;
+}
+
+.scene-new-year {
+	--scene-start: #dff2ff;
+	--scene-end: #fff0cc;
+}
+
+.scene-christmas {
+	--scene-start: #1d3f73;
+	--scene-end: #f6e9b7;
+}
+
+.scene-defender {
+	--scene-start: #d9e8ff;
+	--scene-end: #ffd8cb;
+}
+
+.scene-womens-day {
+	--scene-start: #ffe0ef;
+	--scene-end: #fff7cb;
+}
+
+.scene-spring-labor {
+	--scene-start: #d8f8d6;
+	--scene-end: #fff0ab;
+}
+
+.scene-victory {
+	--scene-start: #331916;
+	--scene-end: #ffba52;
+}
+
+.scene-russia {
+	--scene-start: #e8f1ff;
+	--scene-end: #ffdada;
+}
+
+.scene-unity {
+	--scene-start: #efe7ff;
+	--scene-end: #ffe1cf;
+}
+
+.movie-date {
+	margin: 18px 0 6px;
+	color: #b14130;
+	font-size: 0.9rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.movie-dialog h2 {
+	margin: 0;
+	color: #24304a;
+	font-size: clamp(1.7rem, 4vw, 2.6rem);
+}
+
+.movie-story,
+.movie-sound-note {
+	max-width: 560px;
+	margin: 12px auto 0;
+	color: #5e687b;
+	line-height: 1.6;
+}
+
+.sound-bars {
+	display: flex;
+	justify-content: center;
+	gap: 6px;
+	height: 34px;
+	margin: 14px 0 0;
+}
+
+.sound-bars span {
+	align-self: end;
+	width: 7px;
+	height: 10px;
+	border-radius: 999px;
+	background: linear-gradient(180deg, #f09a34, #d94b36);
+	opacity: 0.38;
+}
+
+.sound-bars.is-playing span {
+	animation: sound-wave 360ms ease-in-out infinite alternate;
+	opacity: 1;
+}
+
+.sound-bars.is-playing span:nth-child(2) {
+	animation-delay: 80ms;
+}
+
+.sound-bars.is-playing span:nth-child(3) {
+	animation-delay: 160ms;
+}
+
+.sound-bars.is-playing span:nth-child(4) {
+	animation-delay: 240ms;
+}
+
+.movie-sound-note {
+	color: #8a6b5a;
+	font-size: 0.92rem;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0) rotate(-2deg);
+	}
+
+	50% {
+		transform: translateY(-14px) rotate(3deg);
+	}
+}
+
+@keyframes drift-left {
+	0% {
+		opacity: 0;
+		transform: translate(-18px, 24px) rotate(-12deg);
+	}
+
+	45%,
+	100% {
+		opacity: 1;
+		transform: translate(0, 0) rotate(8deg);
+	}
+}
+
+@keyframes bounce-in {
+	0% {
+		transform: translateY(42px) scale(0.76);
+	}
+
+	45% {
+		transform: translateY(-10px) scale(1.08);
+	}
+
+	100% {
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes spin-pop {
+	0% {
+		transform: scale(0.5) rotate(-80deg);
+	}
+
+	55% {
+		transform: scale(1.15) rotate(18deg);
+	}
+
+	100% {
+		transform: scale(1) rotate(0);
+	}
+}
+
+@keyframes sound-wave {
+	from {
+		height: 9px;
+	}
+
+	to {
+		height: 30px;
+	}
+}
+
+@media (max-width: 680px) {
+	.facts {
+		grid-template-columns: 1fr;
+	}
+
+	.holiday-panel {
+		grid-template-columns: 1fr;
+	}
+
+	.movie-dialog {
+		padding: 16px;
+	}
+}
+
+@media print {
+	body {
+		background: #fff;
+	}
+
+	.hero {
+		padding-top: 20px;
+	}
+
+	.facts {
+		display: none;
+	}
+
+	.holiday-panel {
+		box-shadow: none;
+	}
+
+	.calendar-grid {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+
+	.month-card {
+		break-inside: avoid;
+		box-shadow: none;
+	}
+}

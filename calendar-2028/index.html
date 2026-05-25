@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Календарь на 2028 год</title>
+		<link rel="stylesheet" href="./styles.css">
+		<script type="module" src="./calendar.js"></script>
+	</head>
+	<body>
+		<header class="hero">
+			<p id="selected-year" class="eyebrow">2028</p>
+			<h1 id="page-title">Календарь на 2028 год</h1>
+			<p id="page-lead" class="lead">Все месяцы 2028 года на одной адаптивной странице с выделенными праздниками России.</p>
+			<nav id="year-controls" class="year-controls" aria-label="Выбор года"></nav>
+		</header>
+
+		<main>
+			<section class="facts" aria-label="Краткая информация">
+				<div>
+					<span id="total-days" class="fact-number">366</span>
+					<span class="fact-label">дней</span>
+				</div>
+				<div>
+					<span id="february-days" class="fact-number">29</span>
+					<span class="fact-label">дней в феврале</span>
+				</div>
+				<div>
+					<span id="first-day" class="fact-number">Сб</span>
+					<span class="fact-label">1 января</span>
+				</div>
+			</section>
+
+			<section class="holiday-panel" aria-labelledby="holiday-title">
+				<div>
+					<p class="eyebrow">Праздники РФ</p>
+					<h2 id="holiday-title">Официальные праздничные даты</h2>
+					<p>Выделены фиксированные праздничные дни России без учета переносов выходных. Нажмите на выделенную дату, чтобы открыть короткий мультфильм с музыкой.</p>
+				</div>
+				<ol id="holiday-list" class="holiday-list"></ol>
+			</section>
+
+			<section id="calendar-grid" class="calendar-grid" aria-label="Месяцы 2028 года"></section>
+		</main>
+
+		<div id="movie-modal" class="movie-modal" hidden>
+			<section class="movie-dialog" role="dialog" aria-modal="true" aria-labelledby="movie-title">
+				<button id="movie-close" class="movie-close" type="button" aria-label="Закрыть мультфильм">×</button>
+				<div id="movie-scene" class="movie-scene" aria-hidden="true"></div>
+				<p id="movie-date" class="movie-date"></p>
+				<h2 id="movie-title"></h2>
+				<p id="movie-story" class="movie-story"></p>
+				<div class="sound-bars" aria-hidden="true">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<p class="movie-sound-note">Музыка создается прямо в браузере и запускается по клику на праздник.</p>
+			</section>
+		</div>
+	</body>
+</html>
