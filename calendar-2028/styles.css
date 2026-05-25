@@ -109,8 +109,9 @@ h1 {
 }
 
 .month-table {
-	width: 100%;
-	padding: 12px 14px 18px;
+	width: calc(100% - 28px);
+	margin: 12px 14px 18px;
+	border-collapse: separate;
 	border-spacing: 0;
 	table-layout: fixed;
 }
@@ -123,7 +124,7 @@ h1 {
 }
 
 .month-table td {
-	height: 36px;
+	height: 34px;
 	border-radius: 11px;
 	color: #22304a;
 	font-weight: 700;
